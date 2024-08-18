@@ -1,16 +1,17 @@
+# docker-compose.yml
 version: '3.8'
 services:
-  db:
-    image: postgres:13
+  db_fpi:
+    image: postgres
+    ports:
+      - "5442:5432"
+    restart: always
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: club_futbol
+      POSTGRES_DB: nestdb
+      POSTGRES_USER: nestuser
+      POSTGRES_PASSWORD: nestpassword
     volumes:
-      - db_data:/var/lib/postgresql/data
-    networks:
-      - club_network
-networks:
-  club_network:
+      - fpidata:/var/lib/postgresql/data
+
 volumes:
-  db_data:
+  fpidata:
